@@ -99,6 +99,13 @@ RGBehavior >> compile: code notifying: requestor [
 ]
 
 { #category : #'*Ring2-RuntimeSupport' }
+RGBehavior >> includesSharedPoolNamed:  aSharedPoolString [ 
+	"Answer whether the receiver uses the shared pool named aSharedPoolString"
+	
+	^ (self sharedPools anySatisfy: [:each | each name = aSharedPoolString])
+]
+
+{ #category : #'*Ring2-RuntimeSupport' }
 RGBehavior >> isClassSide [
 	^self == self classSide
 ]

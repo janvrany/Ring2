@@ -1,6 +1,16 @@
 Extension { #name : #RGEnvironment }
 
 { #category : #'*Calypso-Ring2' }
+RGEnvironment >> allClasses [
+	| classes |
+	
+	classes := OrderedCollection new.
+	self behaviorsDo:[:class | class isMeta ifFalse:[classes add: class]].
+	classes sort:[:a :b | a name < b name ].
+	^classes
+]
+
+{ #category : #'*Calypso-Ring2' }
 RGEnvironment >> associationsDo: aBlock [
 
 	self bindings do: aBlock
@@ -47,8 +57,6 @@ RGEnvironment >> browse [
 
 { #category : #'*Calypso-Ring2' }
 RGEnvironment >> classNames [
-
-	"TODO:"
 	^ self allClasses collect: #name.
 ]
 
